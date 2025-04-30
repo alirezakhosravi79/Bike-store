@@ -13,7 +13,7 @@ function Navbar() {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="bg-black text-white px-4 py-4 relative">
+    <nav className="bg-black text-white px-4 py-4 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
         {/* لوگو و منو همبرگر */}
         <div className="flex items-center gap-4">
