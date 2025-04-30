@@ -1,9 +1,10 @@
-import { BiHeart, BiShoppingBag } from "react-icons/bi";
+import { BiShoppingBag } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext"; // ✅ ایمپورت کانتکست
+import { FaGithub } from "react-icons/fa";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,15 +40,23 @@ function Navbar() {
 
         {/* منوی اصلی دسکتاپ */}
         <ul className="hidden md:flex gap-8 text-gray-300">
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/'>Contact</Link></li>
-          <li><Link to='/'>About</Link></li>
-          <li><Link to='/'>Blog</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Contact</Link>
+          </li>
+          <li>
+            <Link to="/">About</Link>
+          </li>
+          <li>
+            <Link to="/">Blog</Link>
+          </li>
         </ul>
 
         {/* آیکون‌ها */}
         <div className="flex items-center gap-6 text-xl relative">
-          <Link to='/cart' className="relative">
+          <Link to="/cart" className="relative">
             <BiShoppingBag />
             {/* ✅ نشان دادن تعداد آیتم‌ها */}
             {totalItems > 0 && (
@@ -56,7 +65,14 @@ function Navbar() {
               </span>
             )}
           </Link>
-          <BiHeart />
+          <a
+            href="https://github.com/alirezakhosravi79/Bike-store"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-400"
+          >
+            <FaGithub />
+          </a>
           <BsPerson />
         </div>
       </div>
@@ -70,10 +86,18 @@ function Navbar() {
             type="text"
           />
           <ul className="space-y-2">
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/'>Contact</Link></li>
-            <li><Link to='/'>About</Link></li>
-            <li><Link to='/'>Blog</Link></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/">Contact</Link>
+            </li>
+            <li>
+              <Link to="/">About</Link>
+            </li>
+            <li>
+              <Link to="/">Blog</Link>
+            </li>
           </ul>
         </div>
       )}
