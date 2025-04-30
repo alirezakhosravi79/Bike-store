@@ -44,13 +44,13 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Contact</Link>
+            <Link to="/contact">Contact</Link>
           </li>
           <li>
-            <Link to="/">About</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/">Blog</Link>
+            <Link to="/blog">Blog</Link>
           </li>
         </ul>
 
@@ -93,10 +93,10 @@ function Navbar() {
               <Link to="/">Contact</Link>
             </li>
             <li>
-              <Link to="/">About</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
