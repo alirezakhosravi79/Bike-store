@@ -2,12 +2,8 @@
 import { useCart } from "../context/CartContext";
 
 function Cart() {
-  const {
-    cart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart} =
+    useCart();
 
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -37,30 +33,31 @@ function Cart() {
                     />
                     <div>
                       <h3 className="text-lg font-semibold">{item.name}</h3>
-                      <div className="flex items-center gap-2 mt-2">
+                      <p className="text-orange-400 font-bold mt-2">
+                       Price: ${item.price * item.quantity}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => decreaseQuantity(item.id)}
-                          className="bg-gray-600 text-white px-2 rounded hover:bg-gray-700"
+                          className="bg-gray-600 cursor-pointer text-white px-2 rounded hover:bg-gray-700"
                         >
                           -
                         </button>
                         <span className="mx-2">{item.quantity}</span>
                         <button
                           onClick={() => increaseQuantity(item.id)}
-                          className="bg-gray-600 text-white px-2 rounded hover:bg-gray-700"
+                          className="bg-gray-600 cursor-pointer text-white px-2 rounded hover:bg-gray-700"
                         >
                           +
                         </button>
                       </div>
-                      <p className="text-orange-400 font-bold mt-2">
-                        ${item.price * item.quantity}
-                      </p>
-                    </div>
-                  </div>
 
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white"
+                    className="bg-red-600 cursor-pointer hover:bg-red-700 px-4 py-2 rounded text-white"
                   >
                     Remove
                   </button>
@@ -69,8 +66,13 @@ function Cart() {
             </ul>
 
             {/* نمایش مجموع کل قیمت */}
-            <div className="text-right text-xl font-bold text-orange-400">
-              Total: ${totalPrice.toFixed(2)}
+            <div
+              className="text-right bg-gray-800 flex justify-between py-8 px-6 rounded text-xl font-bold
+             text-orange-400"
+            >
+              <p>Total: ${totalPrice.toFixed(2)}</p>
+              <button onClick={() => clearCart()} 
+              className="bg-yellow-500 cursor-pointer hover:bg-yellow-300 text-black px-2 transition-all py-1 rounded">CheckOut</button>
             </div>
           </>
         )}
