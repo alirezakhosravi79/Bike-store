@@ -2,6 +2,7 @@ import { BiHeart, BiShoppingBag } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,9 @@ function Navbar() {
           </button>
 
           {/* عنوان سایت */}
-          <h1 className="font-bold text-3xl">Bike</h1>
+          <Link to="/">
+            <h1 className="font-bold text-3xl">Bike</h1>
+          </Link>
         </div>
 
         {/* اینپوت سرچ - فقط دسکتاپ */}
@@ -34,15 +37,25 @@ function Navbar() {
 
         {/* لیست منو - مخفی در موبایل */}
         <ul className="hidden md:flex gap-8 text-gray-300">
-          <li>Home</li>
-          <li>Contact</li>
-          <li>About</li>
-          <li>Blog</li>
+        <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/'>Contact</Link>
+            </li>
+            <li>
+              <Link to='/'>About</Link>
+            </li>
+            <li>
+              <Link to='/'>Blog</Link>
+            </li>
         </ul>
 
         {/* آیکون‌ها */}
         <div className="flex items-center gap-6 text-xl">
+          <Link to='/cart'>
           <BiShoppingBag />
+          </Link>
           <BiHeart />
           <BsPerson />
         </div>
@@ -57,10 +70,18 @@ function Navbar() {
             type="text"
           />
           <ul className="space-y-2">
-            <li>Home</li>
-            <li>Contact</li>
-            <li>About</li>
-            <li>Blog</li>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/'>Contact</Link>
+            </li>
+            <li>
+              <Link to='/'>About</Link>
+            </li>
+            <li>
+              <Link to='/'>Blog</Link>
+            </li>
           </ul>
         </div>
       )}

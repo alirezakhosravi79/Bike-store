@@ -1,7 +1,7 @@
 
 function Cart() {
   return (
-    <div>Cart</div>
+    <div className="text-white">Cart</div>
   )
 }
 
