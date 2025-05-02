@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { bikesData } from "../data";
 import { BikeType } from "../data";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 function Products() {
-  const {addToCart} = useCart()
+  const { addToCart } = useCart();
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAddToCart = (bike: BikeType) => {
+    if (!isLoggedIn) {
+      localStorage.setItem("pendingProduct", JSON.stringify(bike));
+      navigate("/login");
+    } else {
+      addToCart(bike);
+    }
+  };
+
   return (
     <section className="bg-black py-16 px-6">
       {/* عنوان و توضیح */}
@@ -21,8 +34,15 @@ function Products() {
       {/* لیست محصولات */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 container mx-auto">
         {bikesData.map((bike: BikeType) => (
-          <Link to={`/product/${bike.id}`} key={bike.id}>
-            <div className="bg-gray-900 border border-gray-800 rounded-xl shadow-md p-4 flex flex-col items-center text-center">
+          <div
+            key={bike.id}
+            className="bg-gray-900 border border-gray-800 rounded-xl shadow-md p-4 flex flex-col items-center text-center"
+          >
+            {/* لینک به صفحه جزئیات */}
+            <div
+              className="cursor-pointer w-full"
+              onClick={() => navigate(`/product/${bike.id}`)}
+            >
               <img
                 src={bike.image}
                 alt={bike.name}
@@ -31,7 +51,9 @@ function Products() {
               <h3 className="text-xl font-semibold text-white mb-1">
                 {bike.name}
               </h3>
-              <p className="text-sm text-gray-400 mb-2">Brand: {bike.brand}</p>
+              <p className="text-sm text-gray-400 mb-2">
+                Brand: {bike.brand}
+              </p>
               <ul className="text-sm text-gray-300 space-y-1 mb-4">
                 <li>Speed: {bike.speed} km/h</li>
                 <li>Weight: {bike.weight} kg</li>
@@ -39,12 +61,16 @@ function Products() {
                 <li>Color: {bike.color}</li>
                 <li>Price: ${bike.price}</li>
               </ul>
-              <button onClick={() => addToCart(bike)}
-              className="w-full bg-orange-600 text-white py-2 rounded font-semibold hover:bg-orange-700 transition">
-                Add to Cart
-              </button>
             </div>
-          </Link>
+
+            {/* دکمه افزودن به سبد خرید */}
+            <button
+              onClick={() => handleAddToCart(bike)}
+              className="w-full bg-orange-600 text-white py-2 rounded font-semibold hover:bg-orange-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
         ))}
       </div>
     </section>

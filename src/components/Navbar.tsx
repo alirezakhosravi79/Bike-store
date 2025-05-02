@@ -47,6 +47,9 @@ function Navbar() {
             <Link to="/contact">Contact</Link>
           </li>
           <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
             <Link to="/about">About</Link>
           </li>
           <li>
@@ -90,8 +93,12 @@ function Navbar() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/">Contact</Link>
+              <Link to="/contact">Contact</Link>
             </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+
             <li>
               <Link to="/about">About</Link>
             </li>
